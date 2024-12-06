@@ -1,0 +1,6 @@
+JPA + Oracle 연동 예제
+ORM
+
+1) ~.controller.DeptController.java
+2) ~.service.DeptService 인터페이스
+3) ~.service.DeptServiceImpl.java

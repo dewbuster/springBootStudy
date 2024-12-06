@@ -1,0 +1,6 @@
+Mybatis + Oracle + Thymeleaf 연동 예제
+ORM
+
+Thymeleaf
+html 파일 - [정적페이지]인 html을 자바코딩 + [정적페이지] 로 동적페이지 로 만든다
+

@@ -1,0 +1,16 @@
+1. org.sist.sb06_sbb 패키지 top-level 패키지
+2. @SpringBootApplication
+   Sb06SbbApplication.java : 프로그램의 시작/종료 담당하는 클래스 파일
+   프로젝트 + Application.java
+3. src/main/java 폴더
+   src/main/resources 폴더 : 자바 파일을 제외한 html, css, js 환경설정 파일 등등
+	ㄴ application.properties 파일 = sc.xml, rc.xml
+	ㄴ static 폴더: css, js, 각종 이미지 파일
+	ㄴ templates 폴더: 템플릿 파일 저장
+		템플릿 파일 - html + 자바 코딩 삽입 파일
+
+4. src/test/java 폴더: 테스트 코딩을 하는 폴더(Junit 스프링 단위 테스트 도구)
+
+5. build.gradle( 그레이들 ) : 각종 환경설정 파일 + 그루비(Groovy) 스크립트 언어
+
+6. 

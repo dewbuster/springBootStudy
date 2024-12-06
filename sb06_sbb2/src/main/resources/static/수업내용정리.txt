@@ -1,0 +1,63 @@
+1. controller.MainController.java 추가
+
+
+JPA this.question[Repository].save(q1);  JPA API save() 메서드
+
+H2 DB 설치(내장)
+- 개발용 사용
+- 자바 기반의 경량 DBMS
+- 빠르게 개발 -> 운영 DBMS(Oracle, Ms SQL, MySQL..)
+- build.gradle 파일
+
+4. 설치한 H2 데이터베이스를 사용하기 위한 설정 application.properties
+
+spring.h2.console.enabled=true
+- h2 콘솔에 접속
+- 웹 UI
+spring.h2.console.path=/h2-console
+- h2 콘솔에 접속 경로
+
+spring.datasource.url=jdbc:h2:~/local
+- 데이터베이스에 접속 경로
+  ~ 사용자의 홈 디렉토리
+  local.mv.db 데이터베이스 파일 생성
+
+spring.datasource.driverClassName=org.h2.Driver
+- 드라이버 클래스명
+
+spring.datasource.username=sa
+- 계정
+
+spring.datasource.password=
+- 비밀번호
+
+5. JPA 환경 설정
+h2 데이터베이스 설치 + 파일 생성
+
+6. 
+1) 질문 테이블
+	속성이름	   설명
+	id   	  	질문 데이터의 고유 번호
+	subject   	질문 데이터의 제목
+	content   	질문 데이터의 내용
+	createDate  질문 데이터를 작성한 일시
+
+2) 답변 테이블
+	id   		답변 데이터의 고유 번호
+	question   	질문 데이터 (어떤 질문의 답변인지 알아야 하므로 이 속성이 필요하다.)
+	content   	답변 데이터의 내용
+	createDate  답변 데이터를 작성한 일시
+
+7. 질문 엔티티, 답변 엔티티 생성
+	question 패키지
+	answer 패키지
+	
+8. CRUD Repository (==DAO)
+
+9. JUnit 설치
+
+
+// Repository
+// CrudRepository
+// PagingAndSorRepository
+// JpaRepository
