@@ -1,0 +1,51 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.0'
+	id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'org.sist'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+    runtimeOnly 'com.h2database:h2'
+    // implementation - 필요한 라이브러리 설치의 일반적인 옵션
+    //					이 라이브러리와 관련된 모든 모듈을 컴파일하지 않고
+    //					변경된 내용과 관련이 있는 모듈만 컴파일한다.
+    //					프로젝트 빌드 속도가 빠르다
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    
+    //
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    // 반드시 코딩 수정시 gradle refresh
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

@@ -1,0 +1,81 @@
+<html layout:decorate="~{/question/layout}" xmlns:th="http://www.thymeleaf.org">
+<div layout:fragment="content" class="container my-3">
+<h1>/question/list.html</h1>
+
+<table class="table">
+ <thead class="table-dark">
+  <tr>
+   <th>번호</th>
+<!--    <th>인덱스</th> -->
+   <th>제목</th>
+   <th>작성일</th>
+   <th>첫 번째 항목 여부</th>
+  </tr>
+ </thead>
+ <tbody>
+  <tr th:each="question, loop : ${paging}">
+  
+    <td th:text="${question.id}"></td>
+    <!-- <td th:text="${loop.count}"></td> -->
+    <!-- <td th:text="${loop.index}"></td> --> <!-- 인덱스 출력 -->
+    <!-- <td th:text="${question.subject}"></td> --> <!-- 질문 제목 -->
+    <td th:with="asize=${question.answerList.size()}">
+    <!--  <a href="/question/detail/${question.id}" th:text="${question.subject}" ></a> -->
+     <a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}" ></a>
+     <span th:if="${asize}" class="text-danger small ms-2" th:text="|(${asize})|"></span>     
+    </td>
+    <!-- <td th:text="${question.createDate}"></td> --> <!-- 생성 날짜 -->
+    <!--   #temporals.format() -->
+    <td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd')}"></td>
+    <td th:text="${loop.first} ? 'Yes' : 'No'"></td> <!-- 첫 번째 항목 여부 -->
+    
+  <!-- <td>[[${question.createDate}]]</td> -->
+  
+  </tr>
+ </tbody>
+ </table>
+ <!-- 페이징 블럭 시작 -->
+<div th:if="${ !paging.isEmpty() }">
+    <ul class="pagination justify-content-center">
+
+        <!-- 이전 그룹 버튼 -->
+        <li class="page-item" 
+            th:if="${paging.number / 10 > 0}" 
+            th:classappend="${paging.number / 10 == 0} ? 'disabled' ">
+            <a class="page-link" 
+               th:href="@{|?page=${(paging.number / 10) * 10 - 10}|}">
+                이전
+            </a>
+        </li>
+        
+        <!-- 페이지 번호 -->
+        <li th:each="page: ${#numbers.sequence(
+                (paging.number / 10) * 10 + 1, 
+                T(java.lang.Math).min((paging.number / 10) * 10 + 10, paging.totalPages)
+            )}"
+            th:classappend="${page == paging.number+1} ? 'active'"
+            class="page-item">
+            <a th:text="${page}" 
+               class="page-link" 
+               th:href="@{|?page=${page-1}|}"></a>
+        </li>
+
+        <!-- 다음 그룹 버튼 -->
+        <li class="page-item" 
+       th:if="${(paging.number / 10) * 10 + 10 < paging.totalPages}" 
+       th:classappend="${(paging.number / 10) * 10 + 10 >= paging.totalPages} ? 'disabled' ">
+       
+            <a class="page-link" 
+               th:href="@{|?page=${(paging.number / 10) * 10 + 10}|}">
+                다음
+            </a>
+        </li>
+    </ul>
+</div>
+ <!-- 페이징 블럭 끝 -->
+ 
+ 
+ 	<a th:href="@{/question/create}"  class="btn btn-primary">질문 등록</a>
+ 
+</div>
+</html>

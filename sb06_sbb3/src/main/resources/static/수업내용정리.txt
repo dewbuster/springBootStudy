@@ -1,0 +1,21 @@
+
+1. html 구조 변경
+	1) 템플릿 상속
+		ㄱ. 기본 틀 : layout.html
+		ㄴ.		상속: detail.html
+					  list.html
+					  
+	2)
+	<html layout:decorate="">
+	- 템플릿의 레이아웃(부모템플릿, layout.html)으로 사용할 템플릿을 설정한다.
+	
+2. 질문 등록
+	list.html
+	
+3. 질문 등록 폼 => QuestionForm
+-> 답변 기능에 폼 적용하기~
+-> th:object="${answerForm}"
+[공통 템플릿] form_errors.html
+<div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}"><!-- 부트스트랩 속성값 -->
+     <div th:each=" err : ${#fields.allErrors()}" th:text="${err}"></div>
+    </div>

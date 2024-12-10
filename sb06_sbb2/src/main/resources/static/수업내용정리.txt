@@ -61,3 +61,44 @@ h2 데이터베이스 설치 + 파일 생성
 // CrudRepository
 // PagingAndSorRepository
 // JpaRepository
+
+question 패키지
+	ㄴ QuestionController.java
+	
+1. 템플릿 엔진: 템플릿(html+자바코딩)을 사용하기 위해 스프링 부트에서 제공하는 엔진(Thymeleaf ...)
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+    
+2. https://www.thymeleaf.org
+
+3. 컨트롤러 -> [서비스] -> 리파지토리
+	1) 트랜잭션 처리
+	2) 복잡한 코드를 모듈화~
+	**3) 엔티티 객체 -> DTO 객체 변환
+
+4. QuestionService
+
+oop.index: 루프의 순서(루프의 반복 순서, 0부터 1씩 증가)
+loop.count: 루프의 순서(루프의 반복 순서, 1부터 1씩 증가)
+loop.size: 반복 객체의 요소 개수(예를 들어 questionList의 요소 개수)
+loop.first: 루프의 첫 번째 순서인 경우 true
+loop.last: 루프의 마지막 순서인 경우 true
+loop.odd: 루프의 홀수 번째 순서인 경우 true
+loop.even: 루프의 짝수 번째 순서인 경우 true
+loop.current: 현재 대입된 객체(여기서는 question과 동일)
+
+5. 질문 상세보기
+6. 컨 + 서 + 리
+7. 답변 기능
+	1) detail.html
+		답변 작성	입력태그 구성... + ajax
+		
+8. 웹페이지 디자인..
+	src/main/resources
+		ㄴ static 폴더 안에... css,js 등등
+		
+9. 페이징 모듈화
+html 문서 구조의 body 요소를 제외한 모든 부분이 동일해서 중복인 경우
+타임리프에서는 중복 제거를 위해 "템플릿 상속" 기능을 제공한다.
+  ㄴ 1) 기본 틀이 되는 템플릿을 먼저 작성..
+	 2) 작성된 템플릿을 상속해서 html 구조 완성

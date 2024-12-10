@@ -1,0 +1,27 @@
+시큐리티
+
+1. implementation 'org.springframework.boot:spring-boot-starter-security'
+    // 타임리프 템플릿 엔진과 스프링 시큐리티 프레임워크를 함께 사용할 때 필요한 타임리프의 확장 기능
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+
+2. security.SecurityConfig.java == security_context.xml(레거시)
+
+3. h2-콘솔
+   403 접근 권한 없음 오류 발생
+   이유? 스프링 시큐리티 csrf 처리..
+   .csrf((csrf) -> csrf
+                .ignoringRequestMatchers(new AntPathRequestMatcher("/h2-console/**")));
+   -> 로그인은 되지만 화면 깨짐
+      클릭재킹 공격 막기 위해 보안..: 스프링 부트에서 X-Frame-Options 헤더를 사용
+   .headers((headers) -> headers
+                .addHeaderWriter(new XFrameOptionsHeaderWriter(
+                    XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN)))
+                    
+4. 회원 가입 기능 구현..
+   [회원(SiteUser) 엔티티]
+   username 회원이름/id
+   password
+   email
+   - user 패키지
+
+4-2. UserRepository

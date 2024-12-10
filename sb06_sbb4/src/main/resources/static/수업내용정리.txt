@@ -1,0 +1,35 @@
+
+1. 네비게이션바(메뉴바) 추가하기 - layout.html 파일 추가
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">SBB</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">로그인</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+layout.html 에서 네비게이션 바 분리 (모듈화)
+
+2. 페이징 처리
+	따로 설치 모듈 X + JPA 모듈(페이징 관련 패키지 포함)
+	- 1) org.springframework.data.domain.Page 클래스 : 페이징을 위한 클래스
+	  2) org.springframework.data.domain.PageRequest 클래스 : 현재 페이지번호 + 한페이지에 출력할 수 설정하여
+	  															페이징 요청하는 클래스
+	  3) org.springframework.data.domain.Pageable 인터페이스 : 페이징을 처리하는 인터페이스
+	  
+	JSP
+	모든 게시글 정보 조회 selectAll()
+	모든 게시글 정보 조회 + 페이징 처리 selectAll()
+	
+	list.html 페이지에서 제목 뒤에 답글 갯수를 출력...
+	글번호 제목,...(2) 작성일시
+	
