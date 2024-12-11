@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.sist.sb06_sbb5.exception.DataNotFoundException;
+import org.sist.sb06_sbb5.user.SiteUser;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -39,11 +40,14 @@ public class QuestionService {
 	}
 	
 	// 질문 등록
-	public void create(QuestionForm questionForm) {
+	public void create(QuestionForm questionForm, SiteUser user) {
 		Question question = new Question();
 		question.setSubject(questionForm.getSubject());
 		question.setContent(questionForm.getContent());
 		question.setCreateDate(LocalDateTime.now());
+		
+		question.setAuthor(user);
+		
 		this.questionRepository.save(question);
 	}
 	

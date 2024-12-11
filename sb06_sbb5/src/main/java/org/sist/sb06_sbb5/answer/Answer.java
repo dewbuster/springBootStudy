@@ -3,6 +3,7 @@ package org.sist.sb06_sbb5.answer;
 import java.time.LocalDateTime;
 
 import org.sist.sb06_sbb5.question.Question;
+import org.sist.sb06_sbb5.user.SiteUser;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -26,4 +27,7 @@ public class Answer {
 	
 	@ManyToOne
 	private Question question; // 외래키  주의
+	
+	@ManyToOne
+	private SiteUser author;
 }

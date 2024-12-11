@@ -25,3 +25,31 @@
    - user 패키지
 
 4-2. UserRepository
+
+회원가입 페이지 -> UserCreateForm.java -> UserController
+
+5. 네비게이션바 - 회원가입 추가
+
+6. 등록된 ID, Email -> 회원가입  UK 제약 X
+	-> 제약조건 위배 오류페이지 
+	
+7. 사용자 정의 인증 처리 방식
+	== UserSecurityService == CustomUserDetailsService
+	
+8. 질문/답변	-	작성자 처리....
+	1) question 엔티티
+	   answer	엔티티
+	@ManyToOne
+	private SiteUser author;
+	
+	테이블 AUTHOR_ID 컬럼 == 작성자ID SiteUser PK
+	
+	2) 답변 - 작성자 처리
+	   질문 - 작성자 처리
+	
+	현재 상태는 로그인 하지 않고 질문/답변 작성하면	작성자X 500 서버오류 발생
+
+9. 질문 상세의 작성자 표시..
+
+
+	

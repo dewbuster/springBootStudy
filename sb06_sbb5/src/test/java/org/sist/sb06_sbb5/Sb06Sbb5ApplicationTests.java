@@ -174,15 +174,12 @@ class Sb06Sbb5ApplicationTests {
 	*/
 	@Autowired
 	private QuestionService questionService;
-	
-	@Test
-	void testJpa() {
-		
-		for (int i = 1; i <= 285; i++) {
-			QuestionForm questionForm = new QuestionForm();
-			questionForm.setSubject("질문"+i);
-			questionForm.setContent("질문 내용"+i);
-			this.questionService.create(questionForm);
-		}
-	}
+	/*
+	 * @Test void testJpa() {
+	 * 
+	 * for (int i = 1; i <= 285; i++) { QuestionForm questionForm = new
+	 * QuestionForm(); questionForm.setSubject("질문"+i);
+	 * questionForm.setContent("질문 내용"+i);
+	 * this.questionService.create(questionForm); } }
+	 */
 }

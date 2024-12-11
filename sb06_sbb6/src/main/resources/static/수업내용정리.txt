@@ -1,0 +1,41 @@
+[수업내용정리]
+
+1. 수정 삭제 기능 추가
+   엔티티 - 수정날짜
+   
+2. 질문 상세보기 : 질문 수정 버튼 추가
+   detail.html - 수정버튼
+   QCont
+   create.html -> 수정코딩
+   
+   컨,서 코딩 수정..
+
+3. 질문 삭제
+
+스크립트 코딩 조각 
+[
+<script type='text/javascript'>
+const delete_elements = document.getElementsByClassName("delete");
+Array.from(delete_elements).forEach(function(element) {
+    element.addEventListener('click', function() {
+        if(confirm("정말로 삭제하시겠습니까?")) {
+            location.href = this.dataset.uri;
+        };
+    });
+});
+</script>
+]
+
+layout.html
+
+질문삭제 컨트롤러
+	"    서비스
+	
+답변 수정/삭제 작업
+
+수정된 일자 출력
+
+(내일)
+좋아요/추천 기능 구현
+앵커 기능
+마크다운 적용
