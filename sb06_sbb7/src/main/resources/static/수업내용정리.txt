@@ -1,0 +1,65 @@
+[수업내용정리]
+
+좋아요/추천 기능 구현
+	1) 좋아요/추천 기능 구현
+		질문 추천(좋아요)
+		답변	"
+
+	ㄱ. 질문 엔티티, 답변 엔티티 + 추천인
+		@ManyToMany
+		private Set<SiteUser> voter;
+		// 중복 투표 막기 위해 Set 사용
+    ㄴ. detail.html
+    	질문 = 추천 버튼 추가
+    ㄷ. 추천 요청	서비스, 컨트롤러 수정
+    	/question/vote/2
+앵커 기능
+	항상 스크롤 상단 -> 새로 달린 답변으로 스크롤을 이동..
+	
+마크다운 적용
+	답변/질문	서식이 있는 텍스트 형태로 출력...
+	ㄱ. 마크다운 라이브러리 설치..
+	implementation 'org.commonmark:commonmark:0.21.0'
+	ㄴ. 일반텍스트 -> 마크다운 적용된 텍스트 변환	라이브러리 선언
+	util.CommonUtil.java
+	ㄷ. detail.html
+		질문 내용 출력 일반->마크다운 출력
+		답변 내용 출력		"
+	
+검색 기능
+
+select
+    distinct q.id,
+    q.author_id,
+    q.content,
+    q.create_date,
+    q.modify_date,
+    q.subject
+from question q
+left outer join site_user u1 on q.author_id=u1.id
+left outer join answer a on q.id=a.question_id
+left outer join site_user u2 on a.author_id=u2.id
+where
+    q.subject like '%스프링%'
+    or q.content like '%스프링%'
+    or u1.username like '%스프링%'
+    or a.content like '%스프링%'
+    or u2.username like '%스프링%'
+    
+    JPA를 사용해서 여러 테이블을 조인해서 검색할 경우에는 Specification 인터페이스를
+    사용하면 편리하다
+    Specification 인터페이스는 DB 검색을 더 유연하게 해준다. + 복잡한 검색조건도 처리
+    
+    QuestionRepository
+    	ㄴ	Page<Question> findAll(Specification<Question> spec, Pageable pageable);
+    Specification<Question> spec 선언...
+    
+    QuestionService
+    	ㄴ Specification<Question> search(){}
+    	ㄴ		@Query 어노테이션 권장X
+    	
+    	**** list.html 페이징 블럭 수정해야 된다.		왜?
+    	
+    	js 처리
+    	검색버튼(찾기)	버튼을 클릭할 때.... 검색어 kw/현재페이지번호 <form> hidden
+    	form.submit
